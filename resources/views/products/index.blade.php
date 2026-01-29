@@ -46,5 +46,8 @@
 @endforeach
 
 </div>
+    <div class="mt-10">
+    {{ $products->links() }}
+    </div>
 
 @endsection
