@@ -1,24 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Modifier le Produit</h2>
 
-<form action="{{ route('products.update', $product->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    <input type="text" name="name" value="{{ $product->name }}" class="border p-2 mb-2"><br>
-    <input type="number" name="price" value="{{ $product->price }}" class="border p-2 mb-2"><br>
-    <input type="text" name="description" value="{{ $product->description }}" class="border p-2 mb-2"><br>
-    <input type="number" name="stock" value="{{ $product->stock }}" class="border p-2 mb-2"><br>
-    <!-- CATEGORY -->
-    <select name="category_id">
-        <option value="">-- Choisir une catégorie --</option>
-        @foreach($categories as $category)
-            <option value="{{ $category->id }}" @if ($product->category->id == $category->id) selected @endif >
-                {{ $category->name }}
-            </option>
-        @endforeach
-    </select><br><br>
-    <button type="submit" class="bg-blue-700 text-white px-4 py-2">Modifier</button>
+<div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow">
+<h2 class="text-2xl font-bold mb-6">➕ Modifier le Produit</h2>
+
+<form method="POST" action="{{ route('products.update', $product->id) }}" class="space-y-4">
+@csrf
+@method('PUT')
+
+<input type="text" value="{{ $product->name }}" name="name" placeholder="Nom"
+class="w-full border p-3 rounded">
+
+<input type="number" value="{{ $product->price }}" name="price" placeholder="Prix"
+class="w-full border p-3 rounded">
+
+<textarea name="description" value="{{ $product->description }}" placeholder="Description"
+class="w-full border p-3 rounded"></textarea>
+
+<input type="number" name="stock" value="{{ $product->stock }}" placeholder="Stock"
+class="w-full border p-3 rounded">
+
+<select name="category_id" class="w-full border p-3 rounded">
+<option>-- Catégorie --</option>
+@foreach($categories as $category)
+<option value="{{ $category->id }}" @if($product->category->id == $category->id) selected @endif>{{ $category->name }}</option>
+@endforeach
+</select>
+
+<button class="bg-green-700 text-white px-6 py-3 rounded w-full">
+Ajouter
+</button>
+
 </form>
+</div>
+
 @endsection
