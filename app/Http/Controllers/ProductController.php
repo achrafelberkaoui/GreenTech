@@ -13,10 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(10);
-
+        $products = Product::with('category')->paginate(9);
         $categories = Category::all();
-
         return view('products.index', compact('products','categories'));
     }
 
@@ -34,7 +32,7 @@ class ProductController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-    $request->validate([
+   $te = $request->validate([
             'name' => 'string|required|max:30',
             'price' => 'numeric|required|max:30',
             'description' => 'string|required|max:80',
@@ -42,6 +40,7 @@ class ProductController extends Controller
             'category_id' => 'required'
         ]);
     Product::create($request->all());
+    // dd($te);
     return redirect()->route('products.index');
 
     }
@@ -76,7 +75,7 @@ class ProductController extends Controller
             'stock' => 'integer|max:8',
             'category_id' => 'required'
             ]);
-    $product->update($formvalid);
+            $product->update($formvalid);
     return redirect()->route('products.index')->with('success', 'Produit mis à jour avec succès !');
     }
 
@@ -87,5 +86,12 @@ class ProductController extends Controller
     {
         $product->destroy();
         return redirect()->route('products.index');
+    }
+    public function search(Request $request){
+        $req = $request->input('search');
+        $products = Product::where('name', 'like', '%' . $req . '%')->paginate(9)->withQueryString();
+        // dd($query);
+    return view('products.index', compact('products'));
+
     }
 }

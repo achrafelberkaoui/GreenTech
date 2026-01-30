@@ -15,8 +15,8 @@ class="w-full border p-3 rounded">
 <input type="number" value="{{ $product->price }}" name="price" placeholder="Prix"
 class="w-full border p-3 rounded">
 
-<textarea name="description" value="{{ $product->description }}" placeholder="Description"
-class="w-full border p-3 rounded"></textarea>
+<textarea name="description" placeholder="Description"
+class="w-full border p-3 rounded"> {{  $product->description }} </textarea>
 
 <input type="number" name="stock" value="{{ $product->stock }}" placeholder="Stock"
 class="w-full border p-3 rounded">
@@ -28,7 +28,7 @@ class="w-full border p-3 rounded">
 @endforeach
 </select>
 
-<button class="bg-green-700 text-white px-6 py-3 rounded w-full">
+<button type= "submit" class="bg-green-700 text-white px-6 py-3 rounded w-full">
 Ajouter
 </button>
 

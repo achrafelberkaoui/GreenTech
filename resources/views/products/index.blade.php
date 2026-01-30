@@ -2,16 +2,23 @@
 
 @section('content')
 
-<div class="flex justify-between items-center mb-10">
-    <h2 class="text-3xl font-bold">
-        🌿 Notre Catalogue
-    </h2>
+<div class="flex justify-between items-center mb-6 gap-4">
+
+    <form method="GET" action="{{ route('products.search') }}" class="flex gap-2 w-full max-w-md">
+        <input type="text" name="search" value="{{ request('search') }}" placeholder="🔍 Rechercher un produit..." class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600">
+
+        <button type="submit" class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800"> 
+            Rechercher
+        </button>
+    </form>
 
     <a href="{{ route('products.create') }}"
-       class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800">
+       class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800 whitespace-nowrap">
         ➕ Ajouter un produit
     </a>
+
 </div>
+
 
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
