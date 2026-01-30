@@ -91,7 +91,15 @@ class ProductController extends Controller
         $req = $request->input('search');
         $products = Product::where('name', 'like', '%' . $req . '%')->paginate(9)->withQueryString();
         // dd($query);
-    return view('products.index', compact('products'));
+        $categories = Category::all();
+    return view('products.index', compact('products', 'categories'));
+
+    }
+    public function filter(Request $request){
+        $req = $request->input('category_id');
+        $products = Product::where('category_id', $req)->paginate(9)->withQueryString();
+        $categories = Category::all();
+    return view('products.index', compact('products', 'categories'));
 
     }
 }

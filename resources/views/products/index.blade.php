@@ -10,7 +10,27 @@
         <button type="submit" class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800"> 
             Rechercher
         </button>
+            </form>
+    <!-- Filter catégorie -->
+     <form method="GET" action="{{ route('products.filter') }}" class="flex gap-2 w-full max-w-md">
+    <select name="category_id"
+            class="border rounded px-4 py-2">
+        <option value="">-- Toutes les catégories --</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}"
+                {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+        @endforeach
+    </select>
+
+    <!-- Buttons -->
+    <button type="submit"
+            class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800">
+        Filtrer
+    </button>
     </form>
+
 
     <a href="{{ route('products.create') }}"
        class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800 whitespace-nowrap">

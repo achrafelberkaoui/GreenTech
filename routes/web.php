@@ -5,4 +5,5 @@ use App\Http\Controllers\ProductController;
 Route::get('/', [ProductController::class, 'index']);
 Route::resource('products', ProductController::class);
 Route::get('products.search', [ProductController::class, 'search'])->name('products.search');
+Route::get('products.filter', [ProductController::class, 'filter'])->name('products.filter');
 
