@@ -19,6 +19,19 @@
     <ul class="flex gap-6 font-medium">
         <li><a href="{{ route('products.index') }}" class="hover:text-green-200">Accueil</a></li>
     </ul>
+@auth
+    <span>Welcome {{ Auth::user()->name }}</span>
+    <form method="POST" action="#">
+        @csrf
+        <button>Logout</button>
+    </form>
+@endauth
+
+@guest
+    <a href="{{ route('login') }}">Login</a>
+    <a href="{{ route('register') }}">Register</a>
+@endguest
+
 </nav>
 
 <!-- HERO SECTION -->
