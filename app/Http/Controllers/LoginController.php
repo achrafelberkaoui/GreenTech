@@ -35,4 +35,9 @@ class LoginController extends Controller
         $this->authService->register($request);
             return redirect('/');
     }
+    public function logout(Request $request)
+    {
+        $this->authService->logout($request);
+        return redirect('login');
+    }
 }

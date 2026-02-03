@@ -21,7 +21,7 @@
     </ul>
 @auth
     <span>Welcome {{ Auth::user()->name }}</span>
-    <form method="POST" action="{{route(logout)}}">
+    <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button>Logout</button>
     </form>

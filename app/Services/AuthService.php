@@ -30,6 +30,12 @@ class AuthService
         Auth::login($user);
         $request->session()->regenerate();
     }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+    }
 
 
 }
