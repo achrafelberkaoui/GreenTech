@@ -31,12 +31,12 @@
     </button>
     </form>
 
-
+@if(auth()->user()->role === 'admin')
     <a href="{{ route('products.create') }}"
        class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800 whitespace-nowrap">
         ➕ Ajouter un produit
     </a>
-
+@endif
 </div>
 
 
@@ -62,11 +62,14 @@
             {{ $product->stock > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
             {{ $product->stock > 0 ? 'En stock' : 'Rupture' }}
         </span>
-
+    
+        @if(auth()->user()->role === 'admin')
         <a href="{{ route('products.show', $product->id) }}"
            class="block mt-4 text-center bg-green-600 text-white py-2 rounded hover:bg-green-700">
             Voir détails
         </a>
+        @endif
+
     </div>
 
 </div>
