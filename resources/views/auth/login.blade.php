@@ -40,7 +40,7 @@
 
         <p class="text-center text-sm mt-6">
             Pas encore de compte ?
-            <a href="#" class="text-green-700 font-semibold hover:underline">
+            <a href="{{ route('register') }}" class="text-green-700 font-semibold hover:underline">
                 Créer un compte
             </a>
         </p>

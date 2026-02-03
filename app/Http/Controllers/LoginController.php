@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
 
@@ -24,5 +25,14 @@ class LoginController extends Controller
         }
 
         return back()->withErrors(['email'=>'identifiants incorrects']);
+    }
+    public function showRegister()
+    {
+       return view('auth.register');
+    }
+    public function register(RegisterRequest $request)
+    {
+        $this->authService->register($request);
+            return redirect('/');
     }
 }
