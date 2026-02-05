@@ -16,21 +16,34 @@
 <!-- NAVBAR -->
 <nav class="bg-green-800 text-white px-8 py-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold">🌱 GreenTech</h1>
+    <h2>
+        @auth
+            <span>Welcome {{ Auth::user()->name }}</span>
+        @endauth
+    </h2>
     <ul class="flex gap-6 font-medium">
         <li><a href="{{ route('products.index') }}" class="hover:text-green-200">Accueil</a></li>
-    </ul>
-@auth
-    <span>Welcome {{ Auth::user()->name }}</span>
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button>Logout</button>
-    </form>
-@endauth
+        @auth
+        <li><a href="{{ route('favorite.index') }}" class="hover:text-green-200">My Favorite</a></li>
 
-@guest
-    <a href="{{ route('login') }}">Login</a>
-    <a href="{{ route('register') }}">Register</a>
-@endguest
+        <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button>Logout</button>
+                </form>
+            @endauth
+        </li>
+        
+        <li>
+                @guest
+                <a href="{{ route('login') }}">Login</a>
+        </li>
+        
+        <li>
+                    <a href="{{ route('register') }}">Register</a>
+                    @endguest
+        </li>
+    </ul>
 
 </nav>
 
@@ -49,12 +62,15 @@
        class="bg-green-600 px-6 py-3 rounded-full text-lg hover:bg-green-700 transition">
         🌿 Découvrir le catalogue
     </a>
-@if(auth()->user()->role === 'admin')
+    @auth
+    @if(Auth::user()->role === 'admin')
     <a href="{{ route('products.create') }}"
        class="bg-white text-green-700 px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition">
         ➕ Ajouter un produit
     </a>
-@endif
+    @endif
+    @endauth
+
 </div>
 
         </div>

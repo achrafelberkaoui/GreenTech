@@ -30,18 +30,25 @@
         Filtrer
     </button>
     </form>
-
-@if(auth()->user()->role === 'admin')
+@auth
+@if(Auth::user()->role === 'admin')
     <a href="{{ route('products.create') }}"
        class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800 whitespace-nowrap">
         ➕ Ajouter un produit
     </a>
 @endif
+@endauth
 </div>
 
+@if(session('success'))
+<div class="bg-green-500 text-white p-3 rounded">
+{{session('success')}}
+</div>
+@endif
 
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
 
 @foreach($products as $product)
 <div class="bg-white rounded-xl shadow hover:shadow-xl transition overflow-hidden">
@@ -63,12 +70,32 @@
             {{ $product->stock > 0 ? 'En stock' : 'Rupture' }}
         </span>
     
-        @if(auth()->user()->role === 'admin')
         <a href="{{ route('products.show', $product->id) }}"
            class="block mt-4 text-center bg-green-600 text-white py-2 rounded hover:bg-green-700">
             Voir détails
         </a>
+        @auth
+        @if(Auth::user()->role === 'admin')
+        <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="mt-4">
+            @csrf
+            @method('DELETE')
+        
+            <button
+                type="submit"
+                class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700">
+                Delete
+            </button>
+        </form>
+        @else
+        <form method="POST" action="{{route('favorite.toggleFavorite',$product->id)}}">
+            @csrf
+            <button type="submit"
+                class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+                Ajouter / Retirer des favoris
+            </button>
+        </form>
         @endif
+        @endauth
 
     </div>
 

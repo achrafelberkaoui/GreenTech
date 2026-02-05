@@ -47,6 +47,9 @@
                 <label class="block text-sm font-medium mb-1">Confirmation</label>
                 <input type="password" name="password_confirmation"
                        class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600 focus:outline-none">
+                @error('password_confirmation')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Button -->

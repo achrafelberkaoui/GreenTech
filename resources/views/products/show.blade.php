@@ -36,10 +36,24 @@
                ← Retour
             </a>
 
-            <a href="{{ route('products.edit', $product->id) }}"
-               class="bg-blue-600 text-white px-5 py-2 rounded">
-               Modifier
-            </a>
+            @auth
+    @if(Auth::user()->role === 'admin')
+        <a href="{{ route('products.edit', $product->id) }}"
+           class="bg-blue-600 text-white px-5 py-2 rounded">
+           Modifier
+        </a>
+    @else
+        <form method="POST" action="#">
+            @csrf
+            <button type="submit"
+                    class="bg-green-600 text-white px-5 py-2 rounded">
+                Ajouter / Retirer des favoris
+            </button>
+        </form>
+    @endif
+@endauth
+
+
         </div>
     </div>
 

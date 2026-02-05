@@ -41,7 +41,7 @@ class ProductController extends Controller
         ]);
     Product::create($request->all());
     // dd($te);
-    return redirect()->route('products.index');
+    return redirect()->route('products.index')->with('success', 'Produit ajoute avec succès !');;
 
     }
 
@@ -84,7 +84,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->destroy();
+        $product->delete();
         return redirect()->route('products.index');
     }
     public function search(Request $request){
