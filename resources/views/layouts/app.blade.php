@@ -16,11 +16,6 @@
 <!-- NAVBAR -->
 <nav class="bg-green-800 text-white px-8 py-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold">🌱 GreenTech</h1>
-    <h2>
-        @auth
-            <span>Welcome {{ Auth::user()->name }}</span>
-        @endauth
-    </h2>
     <ul class="flex gap-6 font-medium">
         <li><a href="{{ route('products.index') }}" class="hover:text-green-200">Accueil</a></li>
         @auth
@@ -55,6 +50,16 @@
 
     <div class="relative z-10 h-full flex items-center justify-center text-center">
         <div class="text-white max-w-2xl">
+            @guest
+            <h2 class="bg-green-600 px-6 py-3 rounded-full text-lg hover:bg-green-700 transition">Veuillez vous connecter pour ajouter un produit à vos favoris</h2>
+            
+            @endguest
+            <h2>
+                @auth
+                    <span>Welcome {{ Auth::user()->name }}</span>
+                @endauth
+            </h2>
+
             <h2 class="text-5xl font-bold mb-4">MAKE THIS WORLD</h2>
             <p class="text-xl mb-6">A Better Place With Green Solutions</p>
 <div class="flex justify-center gap-4">

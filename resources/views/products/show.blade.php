@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+@if(session('success'))
+<div class="bg-green-500 text-white p-3 rounded">
+{{session('success')}}
+</div>
+@endif
 <div class="bg-white rounded-xl shadow p-8 grid md:grid-cols-2 gap-8">
 
     <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"
@@ -43,7 +47,7 @@
            Modifier
         </a>
     @else
-        <form method="POST" action="#">
+        <form method="POST" action="{{route('favorite.toggleFavorite',$product->id)}}">
             @csrf
             <button type="submit"
                     class="bg-green-600 text-white px-5 py-2 rounded">

@@ -16,9 +16,14 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert(
             [
-                ['name' => 'Plantes'],
-                ['name' => 'Graines'],
-                ['name' => 'Outils']
+                ['name' => 'Plantes', 'parent_id'=>null],
+                ['name' => 'Graines', 'parent_id'=>null],
+                ['name' => 'Outils', 'parent_id'=>null],
+
+                // sous-category
+                ['name' => 'Plantes interieur', 'parent_id'=> 1],
+                ['name' => 'Grains bio', 'parent_id'=> 2],
+                ['name' => 'outils out', 'parent_id'=> 3],
             ]
         );
     }

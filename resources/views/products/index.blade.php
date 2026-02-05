@@ -46,6 +46,34 @@
 </div>
 @endif
 
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white p-4 rounded-xl shadow">
+        <h2 class="font-bold mb-4">Catégories</h2>
+
+        <ul class="space-y-2">
+            @foreach($categories as $parent)
+                <li>
+                    <a href="{{ route('products.filter', ['category_id' => $parent->id]) }}"
+                       class="font-semibold hover:text-green-700">
+                        {{ $parent->name }}
+                    </a>
+
+                    @if($parent->children->count())
+                        <ul class="ml-4 text-sm text-gray-600">
+                            @foreach($parent->children as $child)
+                                <li>
+                                    <a href="{{ route('products.filter', ['category_id' => $child->id]) }}"
+                                       class="hover:text-green-600">
+                                        — {{ $child->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    </aside>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 
