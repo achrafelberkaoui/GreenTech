@@ -18,7 +18,7 @@
     <h1 class="text-2xl font-bold">🌱 GreenTech</h1>
     <ul class="flex gap-6 font-medium">
         <li><a href="{{ route('products.index') }}" class="hover:text-green-200">Accueil</a></li>
-        <li><a href="{{ route('users.index') }}" class="hover:text-green-200">users</a></li>
+        <li><a href="{{ route('users.index') }}" class="hover:text-green-200">Users</a></li>
         @auth
         <li><a href="{{ route('favorite.index') }}" class="hover:text-green-200">My Favorite</a></li>
 

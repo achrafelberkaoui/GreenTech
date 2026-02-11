@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -38,7 +40,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $role = $user->role;
+        return view('users.show', compact('user', 'role'));
     }
 
     /**
@@ -46,7 +49,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**

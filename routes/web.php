@@ -19,5 +19,6 @@ Route::post('favorites/{product}', [FavoriteController::class, 'toggleFavorite']
 Route::get('favorites', [FavoriteController::class, 'index'])->name('favorite.index');
 // });
 
-@require('auth/auth.php');
-@require('users/users.php');
+@include('auth/auth.php');
+@include('users/users.php');
+@include('roles/roles.php');

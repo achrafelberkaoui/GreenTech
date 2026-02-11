@@ -15,6 +15,14 @@
                value="{{ $user->name }}"
                class="w-full border px-3 py-2 rounded">
     </div>
+    <div class="mb-4">
+    <label class="block mb-1">Role</label>
+    <select name="role_id">
+        @foreach($roles as $role)
+        <option value="{{$role->id}}">{{"$role->name"}}</option>
+        @endforeach
+        </select>
+    </div>
 
     <div class="mb-4">
         <label class="block mb-1">Email</label>

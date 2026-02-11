@@ -4,7 +4,11 @@
 
 <div class="flex justify-between items-center mb-6">
     <h2 class="text-2xl font-bold">Liste des utilisateurs</h2>
-
+    
+    <a href="{{ route('roles.index') }}"
+       class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800">
+        ROLES
+    </a>
     <a href="{{ route('users.create') }}"
        class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800">
         ➕ Ajouter utilisateur
