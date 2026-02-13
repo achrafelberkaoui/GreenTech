@@ -18,10 +18,13 @@
     <h1 class="text-2xl font-bold">🌱 GreenTech</h1>
     <ul class="flex gap-6 font-medium">
         <li><a href="{{ route('products.index') }}" class="hover:text-green-200">Accueil</a></li>
+        @can('viewAny', App\Models\Role::class)
         <li><a href="{{ route('users.index') }}" class="hover:text-green-200">Users</a></li>
+        @endcan
         @auth
+        @can('viewAny', App\Models\Role::class)
         <li><a href="{{ route('favorite.index') }}" class="hover:text-green-200">My Favorite</a></li>
-
+        @endcan
         <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UserIsAdmin
 {
     public function handle(Request $request, Closure $next): Response{
-    if(!Auth::check() || Auth::user()->role !=='admin'){
+    if(!Auth::check() || Auth::user()->roles->name !=='Admin'){
     abort(403, 'Page Introuvablle');
         }
         return $next($request);

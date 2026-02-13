@@ -103,7 +103,7 @@
             Voir détails
         </a>
         @auth
-        @if(Auth::user()->role === 'admin')
+@if(Auth::user()->roles && Auth::user()->roles->name === 'Admin')
         <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="mt-4">
             @csrf
             @method('DELETE')

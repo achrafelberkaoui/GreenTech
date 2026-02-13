@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UserIsClient
 {
     public function handle(Request $request, Closure $next): Response{
-    if(!Auth::check() || Auth::user()->role !=='client'){
+    if(!Auth::check() || Auth::user()->roles->name !=='client'){
     abort(403, 'Page Introuvablle');
         }
         return $next($request);

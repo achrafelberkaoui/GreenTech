@@ -41,7 +41,7 @@
             </a>
 
             @auth
-    @if(Auth::user()->role === 'admin')
+@if(Auth::user()->roles && Auth::user()->roles->name === 'Admin')
         <a href="{{ route('products.edit', $product->id) }}"
            class="bg-blue-600 text-white px-5 py-2 rounded">
            Modifier
