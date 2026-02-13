@@ -13,6 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny',Role::class);
         $users = User::all();
         return view('users.index', compact('users'));
     }
@@ -22,6 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Role::class);
         $roles = Role::all();
         return view('users.create', compact('roles'));
     }
@@ -31,6 +33,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create',Role::class);
+
         User::create($request->all());
         return redirect()->route('users.index');
     }
@@ -40,8 +44,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $role = $user->role;
-        return view('users.show', compact('user', 'role'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -49,6 +52,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update',Role::class);
+
         $roles = Role::all();
         return view('users.edit', compact('user', 'roles'));
     }
@@ -58,7 +63,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->all);
+        $this->authorize('update',Role::class);
+
+        $user->update($request->all());
+        return redirect()->route('users.index');
     }
 
     /**
@@ -66,6 +74,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('create',Role::class);
         $user->delete();
         return redirect()->route('users.index');
     }

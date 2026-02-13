@@ -24,7 +24,7 @@ class AuthService
             'name'=> $request->name,
             'email'=> $request->email,
             'password'=> Hash::make($request->password),
-            'role' => 'client'
+            'role_id' => 6
         ]);
 
         Auth::login($user);
