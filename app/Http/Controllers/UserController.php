@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserExport;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -77,5 +79,9 @@ class UserController extends Controller
         $this->authorize('create',Role::class);
         $user->delete();
         return redirect()->route('users.index');
+    }
+    public function exportUser()
+    {
+        return Excel::download(new UserExport, 'users.xlsx');
     }
 }

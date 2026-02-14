@@ -22,9 +22,9 @@
         <li><a href="{{ route('users.index') }}" class="hover:text-green-200">Users</a></li>
         @endcan
         @auth
-        @can('viewAny', App\Models\Role::class)
+        @if(Auth::user()->roles->name ==='client')
         <li><a href="{{ route('favorite.index') }}" class="hover:text-green-200">My Favorite</a></li>
-        @endcan
+        @endif
         <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

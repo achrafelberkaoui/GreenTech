@@ -53,5 +53,8 @@
         @endforeach
     </tbody>
 </table>
+<a class="bg-green-800 text-white px-3 py-1 rounded" href="{{ route('users.exportUser') }}" class="btn btn-success">
+    Télécharger Excel
+</a>
 
 @endsection

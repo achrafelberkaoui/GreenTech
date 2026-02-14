@@ -31,12 +31,12 @@
     </button>
     </form>
 @auth
-@if(Auth::user()->role === 'admin')
+@can('create', App\Models\Role::class)
     <a href="{{ route('products.create') }}"
        class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800 whitespace-nowrap">
         ➕ Ajouter un produit
     </a>
-@endif
+@endcan
 @endauth
 </div>
 
